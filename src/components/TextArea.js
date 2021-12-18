@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { getTextSegments, highlightText } from "../utils";
+import React, { useRef, useState, useLayoutEffect } from "react";
+import { getTextSegments, highlightText, editCaretPosition } from "../utils";
 const TextArea = ({ highlighted, ...rest }) => {
   const editorRef = useRef();
   const [lastHtml, setLastHtml] = useState();
@@ -11,6 +11,10 @@ const TextArea = ({ highlighted, ...rest }) => {
     let html = highlightText(textContent, highlighted); //returns texts with highlighted words
     setLastHtml(html);
   };
+  useLayoutEffect(() => {
+    const editor = editorRef.current;
+    editCaretPosition(editor);
+  }, [lastHtml]);
   return (
     <div
       className="textarea"
