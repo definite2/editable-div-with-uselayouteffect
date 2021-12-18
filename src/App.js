@@ -1,7 +1,7 @@
 import TextArea from "./components/TextArea";
 
 function App() {
-  const restrictedWords = ["shit", "bastard"];
+  const restrictedWords = ["stupid", "silly"];
   return (
     <div>
       <h2 className="heading">Simple text editor</h2>
