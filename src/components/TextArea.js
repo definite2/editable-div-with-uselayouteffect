@@ -1,29 +1,16 @@
-import React, { useRef } from "react";
-import { getTextSegments } from "../utils/getTextSegments";
+import React, { useRef, useState } from "react";
+import { getTextSegments, highlightText } from "../utils";
 const TextArea = ({ highlighted, ...rest }) => {
   const editorRef = useRef();
-  //simple function that highlights some of words while editing
-  //it first gets text segments array
-  const highlightText = (text) => {
-    const words = text.split(/(\s+)/);
-    const output = words.map((word) => {
-      if (highlighted.includes(word)) {
-        return `<span style="text-decoration: line-through; color:red">${word}</span>`;
-      } else {
-        return word;
-      }
-    });
-    return output.join("");
-  };
-
+  const [lastHtml, setLastHtml] = useState();
   //onInputChnage callback function
   const handleInputChange = (_) => {
     const editor = editorRef.current;
     const textSegments = getTextSegments(editor);
     const textContent = textSegments.map(({ text }) => text).join("");
-    highlightText(textContent);
+    let html = highlightText(textContent, highlighted); //returns texts with highlighted words
+    setLastHtml(html);
   };
-
   return (
     <div
       className="textarea"
@@ -32,6 +19,7 @@ const TextArea = ({ highlighted, ...rest }) => {
       ref={editorRef}
       onInput={handleInputChange}
       spellCheck={false}
+      dangerouslySetInnerHTML={{ __html: lastHtml }}
       {...rest}
     />
   );
