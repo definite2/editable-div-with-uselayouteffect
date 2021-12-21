@@ -1,15 +1,12 @@
 # When Use `useLayoutEffect`
 
 This project is a practical example to show why we need to use `useLayoutEffect` instead of `useEffect` hook.
-It is a simple text editor made of `<div contenteditable>` which faces jumping cursor problem and fixes within `useLayoutEffect` hook.
+It is a simple text editor made of `<div contenteditable>` which faces jumping cursor problem and fixes within `useLayoutEffect` hook. <br/>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Detailed explanation (Blog)
 
 You can find more detailed explanation about the cursor placement problem in contenteditabe element and about the project itself in this [blog](https://devmuscle.com/blog/practical-usage-uselayouteffect)
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
